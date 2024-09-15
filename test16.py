@@ -9,13 +9,13 @@ def extract_numbers(text):
 
 def numbers_to_ISO(numbers : list):
     """numbers is a list for string"""
-    result = ""
-    for i in range(3):
-        result = result + numbers[i] + '-'
-    result = result[:-1] + 'T'
+    result = numbers[0]
+    for i in range(2):
+        result = result + '-' + numbers[i + 1].zfill(2)
+    result = result + 'T'
 
     for str in numbers[3:]:
-        result = result + str + ':'
+        result = result + str.zfill(2) + ':'
     result = result[:-1] + '+'
     result = result + "08:00"
     return result
@@ -28,3 +28,4 @@ def get_time(text):
 input_time = input("输入日期：\n")
 result_time = get_time(input_time)
 print(result_time.date())
+print(result_time.strftime("%Y-%m-%d, %H:%M:%S"))
